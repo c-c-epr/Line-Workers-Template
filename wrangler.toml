@@ -1,0 +1,22 @@
+name = "line-workers-template"
+main = "src/index.ts"
+compatibility_date = "2026-01-28"
+secrets_store_secrets = [
+    { binding = "LINE_CHANNEL_SECRET", store_id= "9c70a29302f948cb9ff3ddbd8d2afb49", secret_name = "LINE_CHANNEL_SECRET" },
+    { binding = "LINE_CHANNEL_ACCESS_TOKEN", store_id= "9c70a29302f948cb9ff3ddbd8d2afb49", secret_name = "LINE_CHANNEL_ACCESS_TOKEN" }
+]
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = true
+persist = true
+head_sampling_rate = 1
