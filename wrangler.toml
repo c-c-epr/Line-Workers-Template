@@ -6,6 +6,9 @@ secrets_store_secrets = [
     { binding = "LINE_CHANNEL_ACCESS_TOKEN", store_id= "9c70a29302f948cb9ff3ddbd8d2afb49", secret_name = "LINE_CHANNEL_ACCESS_TOKEN" }
 ]
 
+[placement]
+hostname = "api.line.me"
+
 [observability]
 enabled = false
 head_sampling_rate = 1
