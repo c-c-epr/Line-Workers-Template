@@ -1,8 +1,8 @@
 # Line Workers Template
 
-[![Code Style: Rrettier][]][prettier]
+「開箱即用」的 Line 官方帳號 Webhook Cloudflare Workers 模板
 
-「開箱即用」的 Line 官方帳號 Webhook 自動回覆
+[![Code Style: Prettier][]][Prettier]
 
 ## ✨特色
 
@@ -20,9 +20,9 @@
 
 ## 🖊️客製化方式
 
-修改 `src/utils/handleEvent.ts`
+修改 `src/eventRouter.ts`
 
 <!-- 網址們 -->
 
-[Code Style: Rrettier]: https://img.shields.io/badge/Code_Style-Prettier-ff69b4.svg?style=flat-square
-[prettier]: https://github.com/prettier/prettier
+[Code Style: Prettier]: https://img.shields.io/badge/Code_Style-Prettier-ff69b4.svg?style=flat-square
+[Prettier]: https://github.com/prettier/prettier
