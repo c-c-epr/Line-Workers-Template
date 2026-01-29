@@ -1,3 +1,3 @@
-export { sendMessage } from "./messageReply.ts";
-export { markAsRead } from "./markAsRead.ts";
-export { loadStart } from "./loadStart.ts";
+export { sendMessage } from "./messageReply";
+export { markAsRead } from "./markAsRead";
+export { loadStart } from "./loadStart";
