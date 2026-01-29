@@ -7,7 +7,7 @@ secrets_store_secrets = [
 ]
 
 [placement]
-hostname = "api.line.me"
+mode = "smart"
 
 [observability]
 enabled = false
