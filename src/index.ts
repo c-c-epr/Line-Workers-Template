@@ -24,7 +24,6 @@ export default {
     }
     // 解析 JSON body
     const events = body.events || [];
-    const destination = body.destination || "";
 
     for (const event of events) {
       await handleEvent(event, channelAccessToken);
