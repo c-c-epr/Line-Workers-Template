@@ -1,5 +1,5 @@
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64.ts";
-import { handleEvent } from "./eventRouter.ts";
+import { eventRouter } from "./eventRouter.ts";
 
 export default {
   async fetch(request: Request, env: any, ctx: any): Promise<Response> {
@@ -44,7 +44,7 @@ export default {
     const events = body.events || [];
 
     for (const event of events) {
-      await handleEvent(event, channelAccessToken);
+      await eventRouter(event, channelAccessToken);
     }
     // 回應 LINE 伺服器
     return new Response("OK");
