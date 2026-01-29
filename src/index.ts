@@ -1,5 +1,5 @@
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64.ts";
-import { handleEvent } from "./utils/handleEvent.ts";
+import { handleEvent } from "./eventRouter.ts";
 
 export default {
   async fetch(request: Request, env: any, ctx: any): Promise<Response> {

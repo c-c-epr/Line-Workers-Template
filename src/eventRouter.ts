@@ -1,4 +1,4 @@
-import { sendMessage, markAsRead, loadStart } from "./LineAPI";
+import { sendMessage, markAsRead, loadStart } from "./eventRoutes";
 
 export async function handleEvent(event: any, channelAccessToken: string) {
   (await markAsRead(channelAccessToken, event.message.markAsReadToken),
