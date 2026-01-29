@@ -54,7 +54,7 @@ export default {
     const events = body.events || [];
 
     for (const event of events) {
-      await eventRouter(event, channelAccessToken);
+      await eventRouter(event, channelAccessToken, ctx);
     }
     // 回應 LINE 伺服器
     return new Response("OK");
