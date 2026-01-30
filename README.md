@@ -2,7 +2,9 @@
 
 「開箱即用」的 Line 官方帳號 Webhook Cloudflare Workers 模板
 
-[![Code Style: Prettier][]][Prettier]
+[![Deploy to Cloudflare]][Cloudflare]
+
+[![Code Style: Prettier]][Prettier]
 
 ## ✨特色
 
@@ -37,6 +39,12 @@
 | Secrets Store | LINE_CHANNEL_ACCESS_TOKENt | Line 官方帳號的 channel access token | 驗證 |      |
 
 <!-- 網址們 -->
+<!-- Cloduflare -->
+
+[Deploy to Cloudflare]: https://deploy.workers.cloudflare.com/button
+[Cloudflare]: https://deploy.workers.cloudflare.com/?url=https://github.com/c-c-epr/line-workers-template
+
+<!-- Prettier -->
 
 [Code Style: Prettier]: https://img.shields.io/badge/Code_Style-Prettier-ff69b4.svg?style=flat-square
 [Prettier]: https://github.com/prettier/prettier
