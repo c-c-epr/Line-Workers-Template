@@ -33,10 +33,10 @@
 
 ## ⚙️配置
 
-|     類型      |            名稱            |                 配置                 | 用途 | 備註 |
-| :-----------: | :------------------------: | :----------------------------------: | :--: | :--: |
-| Secrets Store |    LINE_CHANNEL_SECRET     |    Line 官方帳號的 channel secret    | 驗證 |      |
-| Secrets Store | LINE_CHANNEL_ACCESS_TOKENt | Line 官方帳號的 channel access token | 驗證 |      |
+|     類型      |           名稱            |                 配置                 | 用途 |
+| :-----------: | :-----------------------: | :----------------------------------: | :--: |
+| Secrets Store |    LINE_CHANNEL_SECRET    |    Line 官方帳號的 channel secret    | 驗證 |
+| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN | Line 官方帳號的 channel access token | 驗證 |
 
 <!-- 網址們 -->
 <!-- Cloduflare -->
