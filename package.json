@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260401.1"
+    "@cloudflare/workers-types": "^4.20260403.1"
   },
   "dependencies": {
     "@line/bot-sdk": "^10.6.0",
