@@ -1,45 +1,45 @@
 # Line Workers Template
 
-「開箱即用」的 Line 官方帳號 Webhook Cloudflare Workers 模板
+An “out-of-the-box” LINE Official Account webhook template for Cloudflare Workers.
 
 [![Deploy to Cloudflare]][Cloudflare]
 
 [![Code Style: Prettier]][Prettier]
 
-## ✨特色
+## ✨ Features
 
-- Signature 消息來源安全驗證
-- 訊息回覆
-- 已讀標記
-- 訊息載入動畫
+- Signature verification (validate webhook request source)
+- Reply messages
+- Mark messages as read
+- Message loading animation
 
-## 🖊️模板使用教學
+## 🖊️ How to use this template
 
-1. 複製模板
-   1. `Use this template`=>`Create a new repository`
-   2. 填好`Repository name`和其他倉庫資訊
-2. 修改程式
-   1. 訊息處理路由`src/eventRouter.ts`
-   2. 配置檔案`wrangler.toml`
+1. Create a repo from this template
+   1. `Use this template` => `Create a new repository`
+   2. Fill in `Repository name` and other repository info
+2. Customize the code
+   1. Message routing/handling: `src/eventRouter.ts`
+   2. Config: `wrangler.toml`
       1. `name`
       2. `secrets_store_secrets`
-         1. `store_id`(兩個都要) -> 修改為帳號的`store_id`
-3. 部署
+         1. `store_id` (both entries) -> replace with your account `store_id`
+3. Deploy
    1. Cloudflare
-   2. `Workers 和 Pages`
-   3. `建立應用程式`
+   2. `Workers & Pages`
+   3. `Create application`
    4. `Continue with GitHub`
-   5. 填好資訊
+   5. Fill in the required info
 
-## ⚙️配置
+## ⚙️ Configuration
 
-|     類型      |           名稱            |                 配置                 | 用途 |
-| :-----------: | :-----------------------: | :----------------------------------: | :--: |
-| Secrets Store |    LINE_CHANNEL_SECRET    |    Line 官方帳號的 channel secret    | 驗證 |
-| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN | Line 官方帳號的 channel access token | 驗證 |
+|     Type      |            Name             |                 Description                  |  Purpose  |
+| :-----------: | :-------------------------: | :------------------------------------------: | :-------: |
+| Secrets Store |     LINE_CHANNEL_SECRET     |     LINE Official Account channel secret     | Validate  |
+| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN   | LINE Official Account channel access token   | Validate  |
 
-<!-- 網址們 -->
-<!-- Cloduflare -->
+<!-- Links -->
+<!-- Cloudflare -->
 
 [Deploy to Cloudflare]: https://deploy.workers.cloudflare.com/button
 [Cloudflare]: https://deploy.workers.cloudflare.com/?url=https://github.com/c-c-epr/line-workers-template
