@@ -7,12 +7,15 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,
 
-    "types": ["@cloudflare/workers-types"],
-
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    // Keep this generated declaration file in compilation because it provides
+    // Cloudflare Worker runtime and project Env typings.
+    "worker-configuration.d.ts"
+  ]
 }
