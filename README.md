@@ -1,5 +1,7 @@
 # Line Workers Template
 
+Language: [English](README.md) | [繁體中文](README.zh-TW.md)
+
 An “out-of-the-box” LINE Official Account webhook template for Cloudflare Workers.
 
 [![Deploy to Cloudflare]][Cloudflare]
@@ -33,10 +35,10 @@ An “out-of-the-box” LINE Official Account webhook template for Cloudflare Wo
 
 ## ⚙️ Configuration
 
-|     Type      |            Name             |                 Description                  |  Purpose  |
-| :-----------: | :-------------------------: | :------------------------------------------: | :-------: |
-| Secrets Store |     LINE_CHANNEL_SECRET     |     LINE Official Account channel secret     | Validate  |
-| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN   | LINE Official Account channel access token   | Validate  |
+|     Type      |           Name            |                Description                 | Purpose  |
+| :-----------: | :-----------------------: | :----------------------------------------: | :------: |
+| Secrets Store |    LINE_CHANNEL_SECRET    |    LINE Official Account channel secret    | Validate |
+| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN | LINE Official Account channel access token | Validate |
 
 <!-- Links -->
 <!-- Cloudflare -->

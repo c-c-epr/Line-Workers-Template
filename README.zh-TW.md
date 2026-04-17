@@ -1,5 +1,9 @@
 # Line Workers Template
 
+Language: [English](README.md) | [繁體中文](README.zh-TW.md)
+
+> 本文件與 `README.md` 對齊維護。
+
 「開箱即用」的 Line 官方帳號 Webhook Cloudflare Workers 模板
 
 [![Deploy to Cloudflare]][Cloudflare]
