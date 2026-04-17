@@ -1,5 +1,4 @@
-import type { ExecutionContext } from "@cloudflare/workers-types";
-import type { WebhookRequestBody } from "@line/bot-sdk";
+import type { webhook } from "@line/bot-sdk";
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64";
 import { eventRouter } from "./eventRouter";
 
@@ -34,7 +33,7 @@ export default {
     }
 
     //讀取 raw body
-    let body: WebhookRequestBody = { destination: "", events: [] };
+    let body: webhook.CallbackRequest = { destination: "", events: [] };
     let rawBody = "";
 
     try {
