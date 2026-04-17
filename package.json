@@ -1,6 +1,19 @@
 {
+  "scripts": {
+    "types:sync": "wrangler types",
+    "types:check": "npm run types:sync && git diff --exit-code -- worker-configuration.d.ts",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "dev": "wrangler dev",
+    "predev": "npm run types:sync",
+    "deploy": "wrangler deploy",
+    "predeploy": "npm run types:sync"
+  },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260416.2"
+    "@cloudflare/workers-types": "^4.20260416.2",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@line/bot-sdk": "^11.0.0",
