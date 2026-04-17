@@ -1,4 +1,3 @@
-import type { ExecutionContext } from "@cloudflare/workers-types";
 import { sendMessage, markAsRead, loadStart } from "./utils/eventRoutes";
 
 export async function eventRouter(
