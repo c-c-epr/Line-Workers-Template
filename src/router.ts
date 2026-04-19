@@ -2,11 +2,7 @@ import type { webhook } from "@line/bot-sdk";
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64";
 import { eventRouter } from "./eventRouter";
 
-export async function router(
-  request: Request,
-  env: Env,
-  ctx: ExecutionContext,
-) {
+export async function router(request: Request, env: Env, ctx: ExecutionContext) {
   // 檢查方法合法
   if (request.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });

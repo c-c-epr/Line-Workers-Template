@@ -1,7 +1,4 @@
-export async function hmacSHA256Base64(
-  secret: string,
-  message: string,
-): Promise<string> {
+export async function hmacSHA256Base64(secret: string, message: string): Promise<string> {
   const enc = new TextEncoder();
 
   const key = await crypto.subtle.importKey(

@@ -1,10 +1,6 @@
 import { sendMessage, markAsRead, loadStart } from "./utils/eventRoutes";
 
-export async function eventRouter(
-  event: any,
-  channelAccessToken: string,
-  ctx: ExecutionContext,
-) {
+export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext) {
   ctx.waitUntil(markAsRead(channelAccessToken, event.message.markAsReadToken));
 
   await Promise.race([
