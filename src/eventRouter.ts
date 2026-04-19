@@ -12,10 +12,33 @@ export async function eventRouter(
     new Promise((resolve) => setTimeout(resolve, 50)), // 最多等 50ms
   ]);
 
-  await sendMessage(channelAccessToken, event.replyToken, [
-    {
-      type: "text",
-      text: "Hello from Cloudflare Workers!",
-    },
-  ]);
+  switch (event.type) {
+    case "message": {
+      switch (event.message.type) {
+        case "text":
+          switch (event.message.text) {
+            case "Hi":
+            case "hi": {
+              await sendMessage(channelAccessToken, event.replyToken, [
+                {
+                  type: "text",
+                  text: "Hi",
+                },
+              ]);
+              break;
+            }
+            default: {
+              await sendMessage(channelAccessToken, event.replyToken, [
+                {
+                  type: "text",
+                  text: "Hello from Cloudflare Workers!",
+                },
+              ]);
+            }
+          }
+
+          break;
+      }
+    }
+  }
 }
