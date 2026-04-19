@@ -1,4 +1,4 @@
-name: Workers Types Check
+name: Check
 
 on:
   push:
