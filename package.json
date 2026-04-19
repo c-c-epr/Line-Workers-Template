@@ -6,6 +6,8 @@
     "types": "wrangler types",
     "types:sync": "wrangler types",
     "types:check": "npm run types:sync && git diff --exit-code -- worker-configuration.d.ts",
+    "test": "vitest",
+    "test:run": "vitest run",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "typecheck": "tsc --noEmit",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
+    "vitest": "^4.1.4",
     "wrangler": "^4.83.0"
   },
   "dependencies": {
