@@ -1,4 +1,7 @@
 {
+  "name": "line-workers-template",
+  "version": "0.0.0",
+  "private": false,
   "scripts": {
     "types": "wrangler types",
     "types:sync": "wrangler types",
