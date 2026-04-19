@@ -2,15 +2,6 @@ import type { webhook } from "@line/bot-sdk";
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64";
 import { eventRouter } from "./eventRouter";
 
-interface Env {
-  LINE_CHANNEL_SECRET: {
-    get(): Promise<string>;
-  };
-  LINE_CHANNEL_ACCESS_TOKEN: {
-    get(): Promise<string>;
-  };
-}
-
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     // 檢查方法合法
