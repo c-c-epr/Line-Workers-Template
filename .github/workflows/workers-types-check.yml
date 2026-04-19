@@ -2,13 +2,10 @@ name: Workers Types Check
 
 on:
   push:
-    branches:
-      - main
-      - dev
   pull_request:
 
 jobs:
-  verify:
+  types:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +24,40 @@ jobs:
       - name: Verify generated worker types are up to date
         run: npm run types:check
 
-      - name: Prettier format check
-        run: npm run format:check
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Type check
         run: npm run typecheck
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prettier format check
+        run: npm run format:check
