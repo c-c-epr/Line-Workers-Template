@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "types": "wrangler types",
     "types:sync": "wrangler types",
     "types:check": "npm run types:sync && git diff --exit-code -- worker-configuration.d.ts",
     "format": "prettier . --write",
