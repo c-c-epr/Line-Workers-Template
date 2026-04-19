@@ -6,9 +6,11 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "typecheck": "tsc --noEmit",
+    "start": "wrangler dev",
     "dev": "wrangler dev",
-    "predev": "npm run types:sync",
     "deploy": "wrangler deploy",
+    "prestart": "npm run types:sync",
+    "predev": "npm run types:sync",
     "predeploy": "npm run types:sync"
   },
   "devDependencies": {
