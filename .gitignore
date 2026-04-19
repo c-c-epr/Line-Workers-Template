@@ -29,3 +29,8 @@ Thumbs.db
 
 # Build outputs
 *.js.map
+
+# Test coverage
+coverage/
+coverage-final.json
+lcov.info
