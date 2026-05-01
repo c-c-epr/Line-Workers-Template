@@ -1,4 +1,5 @@
 import { sendMessage, markAsRead, loadStart } from "./utils/eventRoutes";
+import { env } from "cloudflare:workers";
 
 export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext) {
   ctx.waitUntil(markAsRead(channelAccessToken, event.message.markAsReadToken));
@@ -13,6 +14,19 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
       switch (event.message.type) {
         case "text":
           switch (event.message.text) {
+            case "debug":
+              const {
+                id: versionId,
+                tag: versionTag,
+                timestamp: versionTimestamp,
+              } = env.CF_VERSION_METADATA;
+              await sendMessage(channelAccessToken, event.replyToken, [
+                {
+                  type: "text",
+                  text: `Version ID: ${versionId}\nVersion Tag: ${versionTag}\nVersion Timestamp: ${versionTimestamp}`,
+                },
+              ]);
+              break;
             case "Hi":
             case "hi": {
               await sendMessage(channelAccessToken, event.replyToken, [
