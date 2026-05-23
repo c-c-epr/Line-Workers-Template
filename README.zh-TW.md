@@ -25,9 +25,10 @@ Language: [English](README.md) | [繁體中文](README.zh-TW.md)
 2. 修改程式
    1. 訊息處理路由`src/eventRouter.ts`
    2. 配置檔案`wrangler.toml`
-      1. `name`
-      2. `secrets_store_secrets`
-         1. `store_id`(兩個都要) -> 修改為帳號的`store_id`
+      1. `name` 2. `secrets`
+         1. `LINE_CHANNEL_SECRET`
+         2. `LINE_CHANNEL_ACCESS_TOKEN`
+            -> 可使用 `wrangler secret put` 或在 Cloudflare 控制台中設定
 3. 部署
    1. Cloudflare
    2. `Workers 和 Pages`
@@ -37,10 +38,10 @@ Language: [English](README.md) | [繁體中文](README.zh-TW.md)
 
 ## ⚙️配置
 
-|     類型      |           名稱            |                 配置                 | 用途 |
-| :-----------: | :-----------------------: | :----------------------------------: | :--: |
-| Secrets Store |    LINE_CHANNEL_SECRET    |    Line 官方帳號的 channel secret    | 驗證 |
-| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN | Line 官方帳號的 channel access token | 驗證 |
+|  類型   |           名稱            |                 配置                 | 用途 |
+| :-----: | :-----------------------: | :----------------------------------: | :--: |
+| Secrets |    LINE_CHANNEL_SECRET    |    Line 官方帳號的 channel secret    | 驗證 |
+| Secrets | LINE_CHANNEL_ACCESS_TOKEN | Line 官方帳號的 channel access token | 驗證 |
 
 <!-- 網址們 -->
 <!-- Cloduflare -->

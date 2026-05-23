@@ -11,16 +11,16 @@ vi.mock("../src/eventRouter", () => ({
 
 import { router } from "../src/router";
 
-const mockEnv = {
-  LINE_CHANNEL_SECRET: { get: vi.fn() },
-  LINE_CHANNEL_ACCESS_TOKEN: { get: vi.fn() },
+const mockEnv: any = {
+  LINE_CHANNEL_SECRET: "secret",
+  LINE_CHANNEL_ACCESS_TOKEN: "accessToken",
 };
 
 describe("router extra branches", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockEnv.LINE_CHANNEL_SECRET.get.mockResolvedValue("secret");
-    mockEnv.LINE_CHANNEL_ACCESS_TOKEN.get.mockResolvedValue("accessToken");
+    mockEnv.LINE_CHANNEL_SECRET = "secret";
+    mockEnv.LINE_CHANNEL_ACCESS_TOKEN = "accessToken";
   });
 
   it("returns 400 when body is not valid JSON", async () => {

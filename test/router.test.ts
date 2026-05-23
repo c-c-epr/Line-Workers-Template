@@ -2,16 +2,16 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { router } from "../src/router";
 import { hmacSHA256Base64 } from "../src/utils/hmacSHA256Base64";
 
-const mockEnv = {
-  LINE_CHANNEL_SECRET: { get: vi.fn() },
-  LINE_CHANNEL_ACCESS_TOKEN: { get: vi.fn() },
+const mockEnv: any = {
+  LINE_CHANNEL_SECRET: "secret",
+  LINE_CHANNEL_ACCESS_TOKEN: "accessToken",
 };
 
 describe("router", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockEnv.LINE_CHANNEL_SECRET.get.mockResolvedValue("secret");
-    mockEnv.LINE_CHANNEL_ACCESS_TOKEN.get.mockResolvedValue("accessToken");
+    mockEnv.LINE_CHANNEL_SECRET = "secret";
+    mockEnv.LINE_CHANNEL_ACCESS_TOKEN = "accessToken";
   });
 
   it("returns 405 for non-POST methods", async () => {
@@ -43,7 +43,7 @@ describe("router", () => {
   });
 
   it("returns 500 if server is misconfigured", async () => {
-    mockEnv.LINE_CHANNEL_SECRET.get.mockResolvedValue(null);
+    mockEnv.LINE_CHANNEL_SECRET = null;
     const request = new Request("https://example.com", { method: "POST" });
     const response = await router(request, mockEnv as any, {} as any);
 

@@ -23,9 +23,10 @@ An “out-of-the-box” LINE Official Account webhook template for Cloudflare Wo
 2. Customize the code
    1. Message routing/handling: `src/eventRouter.ts`
    2. Config: `wrangler.toml`
-      1. `name`
-      2. `secrets_store_secrets`
-         1. `store_id` (both entries) -> replace with your account `store_id`
+      1. `name` 2. `secrets`
+         1. `LINE_CHANNEL_SECRET`
+         2. `LINE_CHANNEL_ACCESS_TOKEN`
+            -> set these using `wrangler secret put` or the Cloudflare dashboard
 3. Deploy
    1. Cloudflare
    2. `Workers & Pages`
@@ -35,10 +36,10 @@ An “out-of-the-box” LINE Official Account webhook template for Cloudflare Wo
 
 ## ⚙️ Configuration
 
-|     Type      |           Name            |                Description                 | Purpose  |
-| :-----------: | :-----------------------: | :----------------------------------------: | :------: |
-| Secrets Store |    LINE_CHANNEL_SECRET    |    LINE Official Account channel secret    | Validate |
-| Secrets Store | LINE_CHANNEL_ACCESS_TOKEN | LINE Official Account channel access token | Validate |
+|  Type   |           Name            |                Description                 | Purpose  |
+| :-----: | :-----------------------: | :----------------------------------------: | :------: |
+| Secrets |    LINE_CHANNEL_SECRET    |    LINE Official Account channel secret    | Validate |
+| Secrets | LINE_CHANNEL_ACCESS_TOKEN | LINE Official Account channel access token | Validate |
 
 <!-- Links -->
 <!-- Cloudflare -->
