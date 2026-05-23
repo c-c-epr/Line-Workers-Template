@@ -3,10 +3,6 @@ import { loadStart, markAsRead, sendMessage } from "../../src/utils/eventRoutes"
 
 describe("eventRoutes", () => {
   const fetchMock = vi.fn();
-  const versionMessage = {
-    type: "text",
-    text: "Version ID: test-version-id\nVersion Tag: test-version-tag\nVersion Timestamp: 2026-05-01T00:00:00Z",
-  };
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -32,7 +28,7 @@ describe("eventRoutes", () => {
       method: "POST",
       body: JSON.stringify({
         replyToken: "reply-123",
-        messages: [{ type: "text", text: "Hello" }, versionMessage],
+        messages: [{ type: "text", text: "Hello" }],
       }),
     });
     expect(result).toEqual({ ok: true });

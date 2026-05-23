@@ -1,5 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+vi.mock("cloudflare:workers", () => ({
+  env: {
+    CF_VERSION_METADATA: {
+      id: "test-version-id",
+      tag: "test-version-tag",
+      timestamp: "test-version-timestamp",
+    },
+  },
+}));
+
 const mocks = vi.hoisted(() => ({
   sendMessage: vi.fn(),
   markAsRead: vi.fn().mockResolvedValue(undefined),
