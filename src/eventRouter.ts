@@ -15,11 +15,7 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
         case "text":
           switch (event.message.text) {
             case "debug":
-              const {
-                id: versionId,
-                tag: versionTag,
-                timestamp: versionTimestamp,
-              } = env.CF_VERSION_METADATA;
+              const { id: versionId, tag: versionTag, timestamp: versionTimestamp } = env.CF_VERSION_METADATA;
               await sendMessage(channelAccessToken, event.replyToken, [
                 {
                   type: "text",

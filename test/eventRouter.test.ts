@@ -33,9 +33,7 @@ describe("eventRouter", () => {
     expect(ctx.waitUntil).toHaveBeenCalledTimes(1);
     expect(mocks.markAsRead).toHaveBeenCalledWith("accessToken", "mark-token");
     expect(mocks.loadStart).toHaveBeenCalledWith("accessToken", "U123", 5);
-    expect(mocks.sendMessage).toHaveBeenCalledWith("accessToken", "reply-token", [
-      { type: "text", text: "Hi" },
-    ]);
+    expect(mocks.sendMessage).toHaveBeenCalledWith("accessToken", "reply-token", [{ type: "text", text: "Hi" }]);
   });
 
   it("handles 'hi' message", async () => {
@@ -49,9 +47,7 @@ describe("eventRouter", () => {
 
     await eventRouter(event, "accessToken", ctx);
 
-    expect(mocks.sendMessage).toHaveBeenCalledWith("accessToken", "reply-token", [
-      { type: "text", text: "Hi" },
-    ]);
+    expect(mocks.sendMessage).toHaveBeenCalledWith("accessToken", "reply-token", [{ type: "text", text: "Hi" }]);
   });
 
   it("handles default text message", async () => {

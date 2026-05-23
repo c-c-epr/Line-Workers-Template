@@ -8,10 +8,7 @@ export async function router(request: Request, env: Env, ctx: ExecutionContext) 
     return new Response("Method Not Allowed", { status: 405 });
   }
   // 取得環境變數
-  const [channelSecret, channelAccessToken] = await Promise.all([
-    env.LINE_CHANNEL_SECRET.get(),
-    env.LINE_CHANNEL_ACCESS_TOKEN.get(),
-  ]);
+  const [channelSecret, channelAccessToken] = await Promise.all([env.LINE_CHANNEL_SECRET.get(), env.LINE_CHANNEL_ACCESS_TOKEN.get()]);
   if (!channelSecret || !channelAccessToken) {
     return new Response("Server misconfigured", { status: 500 });
   }
