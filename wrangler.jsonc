@@ -4,6 +4,7 @@
   "main": "src/_index.ts",
   "compatibility_date": "2026-01-28",
   "secrets": { "required": ["LINE_CHANNEL_SECRET", "LINE_CHANNEL_ACCESS_TOKEN"] },
+  "vars": { "timezone": "Asia/Taipei" },
   "placement": {
     "mode": "smart",
   },
