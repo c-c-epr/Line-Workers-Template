@@ -1,6 +1,7 @@
 import type { webhook } from "@line/bot-sdk";
 import { hmacSHA256Base64 } from "./utils/hmacSHA256Base64";
 import { eventRouter } from "./eventRouter";
+import { sendMessage } from "./utils/eventRoutes";
 
 export async function router(request: Request, env: Env, ctx: ExecutionContext) {
   // 檢查方法合法
@@ -8,7 +9,9 @@ export async function router(request: Request, env: Env, ctx: ExecutionContext) 
     return new Response("Method Not Allowed", { status: 405 });
   }
   // 取得環境變數
-  const [channelSecret, channelAccessToken] = await Promise.all([env.LINE_CHANNEL_SECRET, env.LINE_CHANNEL_ACCESS_TOKEN]);
+  const channelSecret = env.LINE_CHANNEL_SECRET;
+  const channelAccessToken = env.LINE_CHANNEL_ACCESS_TOKEN;
+
   if (!channelSecret || !channelAccessToken) {
     return new Response("Server misconfigured", { status: 500 });
   }
@@ -39,9 +42,11 @@ export async function router(request: Request, env: Env, ctx: ExecutionContext) 
   }
   // 解析 JSON body
   const events = body.events || [];
-
-  for (const event of events) {
-    await eventRouter(event, channelAccessToken, ctx);
+  for (const event of events as any[]) {
+    const responses = (await eventRouter(event, channelAccessToken, ctx)) ?? [];
+    if (responses.length > 0) {
+      await sendMessage(channelAccessToken, event.replyToken, responses as any[]);
+    }
   }
   // 回應 LINE 伺服器
   return new Response("OK");

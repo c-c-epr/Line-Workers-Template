@@ -2,7 +2,7 @@ import { sendMessage, markAsRead, loadStart } from "./utils/eventRoutes";
 import { env } from "cloudflare:workers";
 import { version } from "../package.json";
 
-export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext) {
+export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext): Promise<any[]> {
   // Log
   let eventType: string = event.type;
   try {
@@ -41,40 +41,36 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
                 hour12: false,
               }).format(new Date(versionTimestamp));
 
-              await sendMessage(channelAccessToken, event.replyToken, [
+              return [
                 {
                   type: "text",
                   text:
                     `ID: ${versionId.slice(0, 8)}\n` + `Tag: ${versionTag}\n` + `Timestamp: ${LocalVersionTime}\n` + `Package: v${version}`,
                 },
-              ]);
-              break;
+              ];
 
             case "Hi":
             case "hi": {
-              await sendMessage(channelAccessToken, event.replyToken, [
+              return [
                 {
                   type: "text",
                   text: "Hi",
                 },
-              ]);
-              break;
+              ];
             }
             default: {
-              await sendMessage(channelAccessToken, event.replyToken, [
+              return [
                 {
                   type: "text",
                   text: "Hello from Cloudflare Workers!",
                 },
-              ]);
+              ];
             }
           }
-
-          break;
       }
     }
     case "postback":
-      break;
+      return [];
     case "follow":
       if (!event.follow.isUnblocked) {
         // 新增好友
@@ -86,4 +82,5 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
     case "unfollow":
       return []; // unfollow 事件無法回應
   }
+  return [];
 }

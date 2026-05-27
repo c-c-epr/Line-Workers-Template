@@ -12,11 +12,16 @@ vi.mock("cloudflare:workers", () => ({
 }));
 
 const mocks = vi.hoisted(() => ({
-  eventRouter: vi.fn().mockResolvedValue(undefined),
+  eventRouter: vi.fn(),
+  sendMessage: vi.fn().mockResolvedValue(undefined),
 }));
 
 vi.mock("../src/eventRouter", () => ({
   eventRouter: mocks.eventRouter,
+}));
+
+vi.mock("../src/utils/eventRoutes", () => ({
+  sendMessage: mocks.sendMessage,
 }));
 
 import { router } from "../src/router";
@@ -49,10 +54,13 @@ describe("router extra branches", () => {
   });
 
   it("dispatches each event to eventRouter", async () => {
-    const eventA = { type: "message", message: { type: "text", text: "Hi" } };
+    const eventA = { type: "message", message: { type: "text", text: "Hi" }, replyToken: "reply-a" };
     const eventB = { type: "message", message: { type: "text", text: "hello" } };
     const rawBody = JSON.stringify({ destination: "", events: [eventA, eventB] });
     const signature = await hmacSHA256Base64("secret", rawBody);
+
+    mocks.eventRouter.mockResolvedValueOnce([{ type: "text", text: "first" }]);
+    mocks.eventRouter.mockResolvedValueOnce([]);
 
     const request = new Request("https://example.com", {
       method: "POST",
@@ -67,6 +75,8 @@ describe("router extra branches", () => {
     expect(mocks.eventRouter).toHaveBeenCalledTimes(2);
     expect(mocks.eventRouter).toHaveBeenNthCalledWith(1, eventA, "accessToken", ctx);
     expect(mocks.eventRouter).toHaveBeenNthCalledWith(2, eventB, "accessToken", ctx);
+    expect(mocks.sendMessage).toHaveBeenCalledTimes(1);
+    expect(mocks.sendMessage).toHaveBeenCalledWith("accessToken", "reply-a", [{ type: "text", text: "first" }]);
   });
 
   it("returns 200 when events field is missing", async () => {
