@@ -3,15 +3,27 @@ import { env } from "cloudflare:workers";
 import { version } from "../package.json";
 
 export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext) {
-  ctx.waitUntil(markAsRead(channelAccessToken, event.message.markAsReadToken));
+  // Log
+  let eventType: string = event.type;
+  try {
+    if (["message"].includes(event.type)) {
+      eventType = `${event.type}(${event.message?.type})`;
+    }
+  } catch (e) {
+    console.error("Failed to determine message event type", { error: e });
+  }
 
-  await Promise.race([
-    loadStart(channelAccessToken, event.source.userId, 5),
-    new Promise((resolve) => setTimeout(resolve, 50)), // 最多等 50ms
-  ]);
+  console.log(`Received event - ${eventType}`, { event });
 
   switch (event.type) {
     case "message": {
+      ctx.waitUntil(markAsRead(channelAccessToken, event.message.markAsReadToken));
+
+      await Promise.race([
+        loadStart(channelAccessToken, event.source.userId, 5),
+        new Promise((resolve) => setTimeout(resolve, 50)), // 最多等 50ms
+      ]);
+
       switch (event.message.type) {
         case "text":
           switch (event.message.text) {
@@ -61,5 +73,17 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
           break;
       }
     }
+    case "postback":
+      break;
+    case "follow":
+      if (!event.follow.isUnblocked) {
+        // 新增好友
+        return [];
+      } else {
+        // 解除封鎖
+        return [];
+      }
+    case "unfollow":
+      return []; // unfollow 事件無法回應
   }
 }
