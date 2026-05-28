@@ -17,6 +17,7 @@
     "binding": "ASSETS",
     "run_worker_first": ["/", "!/image/*"],
   },
+  "images": { "binding": "IMAGES" },
   "placement": {
     "mode": "smart",
   },
