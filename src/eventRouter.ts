@@ -58,6 +58,15 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
                 },
               ];
             }
+            case "image": {
+              return [
+                {
+                  type: "image",
+                  originalContentUrl: "https://lwt.ccepr.dev/image/original.png",
+                  previewImageUrl: "https://lwt.ccepr.dev/image/preview.png",
+                },
+              ];
+            }
             default: {
               return [
                 {
