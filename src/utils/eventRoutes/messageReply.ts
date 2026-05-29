@@ -1,4 +1,6 @@
-export async function sendMessage(ChannelAccessToken: string, replyToken: string, messages: any[]) {
+import type { Message } from "../../types";
+
+export async function sendMessage(ChannelAccessToken: string, replyToken: string, messages: Message[]): Promise<unknown> {
   const res = await fetch("https://api.line.me/v2/bot/message/reply", {
     headers: {
       "Content-Type": "application/json",

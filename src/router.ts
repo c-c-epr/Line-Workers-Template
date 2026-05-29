@@ -42,10 +42,10 @@ export async function router(request: Request, env: Env, ctx: ExecutionContext) 
   }
   // 解析 JSON body
   const events = body.events || [];
-  for (const event of events as any[]) {
+  for (const event of events) {
     const responses = (await eventRouter(event, channelAccessToken, ctx)) ?? [];
-    if (responses.length > 0) {
-      await sendMessage(channelAccessToken, event.replyToken, responses as any[]);
+    if (responses.length > 0 && "replyToken" in event && typeof event.replyToken === "string") {
+      await sendMessage(channelAccessToken, event.replyToken, responses);
     }
   }
   // 回應 LINE 伺服器

@@ -1,13 +1,16 @@
 import { sendMessage, markAsRead, loadStart } from "./utils/eventRoutes";
 import { env } from "cloudflare:workers";
 import { version } from "../package.json";
+import type { webhook } from "@line/bot-sdk";
+import type { Message } from "./types";
 
-export async function eventRouter(event: any, channelAccessToken: string, ctx: ExecutionContext): Promise<any[]> {
+export async function eventRouter(event: webhook.Event, channelAccessToken: string, ctx: ExecutionContext): Promise<Message[]> {
   // Log
   let eventType: string = event.type;
   try {
-    if (["message"].includes(event.type)) {
-      eventType = `${event.type}(${event.message?.type})`;
+    if (event.type === "message") {
+      const msgEvent = event as webhook.MessageEvent;
+      eventType = `${event.type}(${msgEvent.message?.type})`;
     }
   } catch (e) {
     console.error("Failed to determine message event type", { error: e });
@@ -17,16 +20,25 @@ export async function eventRouter(event: any, channelAccessToken: string, ctx: E
 
   switch (event.type) {
     case "message": {
-      ctx.waitUntil(markAsRead(channelAccessToken, event.message.markAsReadToken));
+      const msgEvent = event as webhook.MessageEvent;
+      if (msgEvent.message.markAsReadToken) {
+        ctx.waitUntil(markAsRead(channelAccessToken, msgEvent.message.markAsReadToken));
+      }
 
-      await Promise.race([
-        loadStart(channelAccessToken, event.source.userId, 5),
-        new Promise((resolve) => setTimeout(resolve, 50)), // 最多等 50ms
-      ]);
+      const userId = msgEvent.source && typeof (msgEvent.source as any).userId === "string" ? (msgEvent.source as any).userId : undefined;
 
-      switch (event.message.type) {
+      if (userId) {
+        await Promise.race([
+          loadStart(channelAccessToken, userId, 5),
+          new Promise((resolve) => setTimeout(resolve, 50)), // 最多等 50ms
+        ]);
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+
+      switch (msgEvent.message.type) {
         case "text":
-          switch (event.message.text) {
+          switch (msgEvent.message.text) {
             case "/version":
               const { id: versionId, tag: versionTag, timestamp: versionTimestamp } = env.CF_VERSION_METADATA;
 
