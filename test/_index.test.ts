@@ -12,7 +12,7 @@ import worker from "../src/_index";
 
 describe("worker fetch entry", () => {
   it("delegates request handling to router", async () => {
-    const request = new Request("https://example.com", { method: "POST" });
+    const request = new Request("https://example.com/webhook", { method: "POST" });
     const env = { SOME_ENV: "value" } as any;
     const ctx = { waitUntil: vi.fn() } as any;
     const expectedResponse = new Response("delegated", { status: 200 });

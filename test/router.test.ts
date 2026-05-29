@@ -26,7 +26,7 @@ describe("router", () => {
   });
 
   it("returns 405 for non-POST methods", async () => {
-    const request = new Request("https://example.com", { method: "GET" });
+    const request = new Request("https://example.com/webhook", { method: "GET" });
     const response = await router(request, mockEnv as any, {} as any);
 
     expect(response.status).toBe(405);
@@ -34,7 +34,7 @@ describe("router", () => {
   });
 
   it("returns 400 if signature is missing", async () => {
-    const request = new Request("https://example.com", { method: "POST" });
+    const request = new Request("https://example.com/webhook", { method: "POST" });
     const response = await router(request, mockEnv as any, {} as any);
 
     expect(response.status).toBe(400);
@@ -42,7 +42,7 @@ describe("router", () => {
   });
 
   it("returns 401 if signature is invalid", async () => {
-    const request = new Request("https://example.com", {
+    const request = new Request("https://example.com/webhook", {
       method: "POST",
       headers: { "x-line-signature": "invalid" },
       body: JSON.stringify({}),
@@ -55,7 +55,7 @@ describe("router", () => {
 
   it("returns 500 if server is misconfigured", async () => {
     mockEnv.LINE_CHANNEL_SECRET = null;
-    const request = new Request("https://example.com", { method: "POST" });
+    const request = new Request("https://example.com/webhook", { method: "POST" });
     const response = await router(request, mockEnv as any, {} as any);
 
     expect(response.status).toBe(500);
@@ -65,7 +65,7 @@ describe("router", () => {
   it("returns 200 for a valid signed request", async () => {
     const rawBody = JSON.stringify({ destination: "", events: [] });
     const signature = await hmacSHA256Base64("secret", rawBody);
-    const request = new Request("https://example.com", {
+    const request = new Request("https://example.com/webhook", {
       method: "POST",
       headers: { "x-line-signature": signature },
       body: rawBody,

@@ -40,7 +40,7 @@ describe("router extra branches", () => {
 
   it("returns 400 when body is not valid JSON", async () => {
     const errorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
-    const request = new Request("https://example.com", {
+    const request = new Request("https://example.com/webhook", {
       method: "POST",
       headers: { "x-line-signature": "sig" },
       body: "{",
@@ -62,7 +62,7 @@ describe("router extra branches", () => {
     mocks.eventRouter.mockResolvedValueOnce([{ type: "text", text: "first" }]);
     mocks.eventRouter.mockResolvedValueOnce([]);
 
-    const request = new Request("https://example.com", {
+    const request = new Request("https://example.com/webhook", {
       method: "POST",
       headers: { "x-line-signature": signature },
       body: rawBody,
@@ -83,7 +83,7 @@ describe("router extra branches", () => {
     const rawBody = JSON.stringify({ destination: "" });
     const signature = await hmacSHA256Base64("secret", rawBody);
 
-    const request = new Request("https://example.com", {
+    const request = new Request("https://example.com/webhook", {
       method: "POST",
       headers: { "x-line-signature": signature },
       body: rawBody,
