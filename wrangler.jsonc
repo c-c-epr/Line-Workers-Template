@@ -9,6 +9,9 @@
   "vars": {
     "timezone": "Asia/Taipei",
   },
+  "workers_dev": false,
+  "preview_urls": true,
+  "routes": [{ "custom_domain": true, "pattern": "lwt.ccepr.dev" }],
   "placement": {
     "mode": "smart",
   },
