@@ -8,7 +8,6 @@
     "types:check": "npm run types:sync && git diff --exit-code -- worker-configuration.d.ts",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "typecheck": "tsc --noEmit",
@@ -20,7 +19,6 @@
     "predeploy": "npm run types:sync"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "^4.1.7",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7",
