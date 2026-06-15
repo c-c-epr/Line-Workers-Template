@@ -91,7 +91,7 @@ export async function eventRouter(event: webhook.Event, channelAccessToken: stri
                       text: "This message is sent by Workflow!",
                     },
                   ],
-                  waitFor: 60,
+                  waitFor: 60 * 1000,
                 },
               });
               return [];
