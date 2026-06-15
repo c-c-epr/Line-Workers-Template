@@ -9,6 +9,7 @@
   "vars": {
     "timezone": "Asia/Taipei",
   },
+  "workflows": [{ "binding": "MY_WORKFLOW", "class_name": "MyWorkflow", "name": "MyWorkflow" }],
   "workers_dev": false,
   "preview_urls": true,
   "routes": [{ "custom_domain": true, "pattern": "lwt.ccepr.dev" }],

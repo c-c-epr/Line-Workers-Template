@@ -4,6 +4,8 @@ import { version } from "../package.json";
 import type { webhook } from "@line/bot-sdk";
 import type { Message } from "./types";
 
+import { MyWorkflow } from "./workflows/message";
+
 export async function eventRouter(event: webhook.Event, channelAccessToken: string, ctx: ExecutionContext): Promise<Message[]> {
   // Log
   let eventType: string = event.type;
@@ -76,6 +78,15 @@ export async function eventRouter(event: webhook.Event, channelAccessToken: stri
                   type: "image",
                   originalContentUrl: "https://lwt.ccepr.dev/image/original.png",
                   previewImageUrl: "https://lwt.ccepr.dev/image/preview.png",
+                },
+              ];
+            }
+            case "workflow": {
+              const instance = await env.MY_WORKFLOW.create();
+              return [
+                {
+                  type: "text",
+                  text: `Instance ID: ${instance.id}`,
                 },
               ];
             }

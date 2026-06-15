@@ -1,4 +1,5 @@
 import { router } from "./router";
+import { MyWorkflow } from "./workflows/message";
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
