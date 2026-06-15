@@ -1,6 +1,6 @@
 import { WorkflowEntrypoint, WorkflowEvent, WorkflowStep } from "cloudflare:workers";
 import { sendMessage } from "../utils/eventRoutes";
-import { Message } from "../types";
+import type { Message } from "../types";
 import { env } from "cloudflare:workers";
 
 type Params = { replyToken: string; messages: Message[]; waitFor: number };
