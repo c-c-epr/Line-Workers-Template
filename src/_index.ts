@@ -1,5 +1,5 @@
 import { router } from "./router";
-export { MyWorkflow } from "./workflows/message";
+export { SendmessageWithDelay } from "./workflows";
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {

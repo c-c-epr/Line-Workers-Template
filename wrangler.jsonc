@@ -11,9 +11,9 @@
   },
   "workflows": [
     {
-      "binding": "MY_WORKFLOW", //程式裡面的環境變數名稱
-      "class_name": "MyWorkflow", // class 的名稱
-      "name": "MyWorkflow", // workflow 的名稱
+      "binding": "SendmessageWithDelay", //程式裡面的環境變數名稱
+      "class_name": "SendmessageWithDelay", // class 的名稱
+      "name": "SendmessageWithDelay", // workflow 的名稱
       "limits": {
         "steps": 100,
       },
