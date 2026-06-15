@@ -1,12 +1,15 @@
 import { WorkflowEntrypoint, WorkflowEvent, WorkflowStep } from "cloudflare:workers";
-type Params = {};
+import { sendMessage } from "../utils/eventRoutes";
+import { Message } from "../types";
+import { env } from "cloudflare:workers";
+
+type Params = { replyToken: string; messages: Message[]; waitFor: number };
 export class MyWorkflow extends WorkflowEntrypoint<Env, Params> {
   async run(event: WorkflowEvent<Params>, step: WorkflowStep) {
-    step.do("my first step", async () => {
-      console.log("first step");
-    });
-    step.do("my second step", async () => {
-      console.log("second step");
+    await step.sleep(`Wait for ${event.payload.waitFor} seconds`, event.payload.waitFor);
+
+    const sendMessageResult = await step.do("Send Message", async () => {
+      await sendMessage(env.LINE_CHANNEL_ACCESS_TOKEN, event.payload.replyToken, event.payload.messages);
     });
   }
 }

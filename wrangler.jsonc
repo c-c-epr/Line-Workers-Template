@@ -9,7 +9,16 @@
   "vars": {
     "timezone": "Asia/Taipei",
   },
-  "workflows": [{ "binding": "MY_WORKFLOW", "class_name": "MyWorkflow", "name": "MyWorkflow" }],
+  "workflows": [
+    {
+      "binding": "MY_WORKFLOW", //程式裡面的環境變數名稱
+      "class_name": "MyWorkflow", // class 的名稱
+      "name": "MyWorkflow", // workflow 的名稱
+      "limits": {
+        "steps": 100,
+      },
+    },
+  ],
   "workers_dev": false,
   "preview_urls": true,
   "routes": [{ "custom_domain": true, "pattern": "lwt.ccepr.dev" }],

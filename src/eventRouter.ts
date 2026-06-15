@@ -82,13 +82,20 @@ export async function eventRouter(event: webhook.Event, channelAccessToken: stri
               ];
             }
             case "workflow": {
-              const instance = await env.MY_WORKFLOW.create();
-              return [
-                {
-                  type: "text",
-                  text: `Instance ID: ${instance.id}`,
+              loadStart(channelAccessToken, userId, 60);
+              const instance = await env.MY_WORKFLOW.create({
+                params: {
+                  replyToken: msgEvent.replyToken as string,
+                  messages: [
+                    {
+                      type: "text",
+                      text: "This message is sent by Workflow!",
+                    },
+                  ],
+                  waitFor: 60,
                 },
-              ];
+              });
+              return [];
             }
             default: {
               return [
