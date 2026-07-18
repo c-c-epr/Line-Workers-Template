@@ -14,7 +14,8 @@
     "deploy": "wrangler deploy --secrets-file .env",
     "prestart": "npm run types:sync",
     "predev": "npm run types:sync",
-    "predeploy": "npm run types:sync"
+    "predeploy": "npm run types:sync",
+    "postinstall": "wrangler types"
   },
   "dependencies": {
     "@line/bot-sdk": "^11.0.2"
