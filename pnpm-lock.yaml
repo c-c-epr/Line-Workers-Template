@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@line/bot-sdk':
-        specifier: ^11.3.0
-        version: 11.3.0
+        specifier: ^11.4.0
+        version: 11.4.0
     devDependencies:
       '@types/node':
         specifier: ^26.6.4
@@ -563,8 +563,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@line/bot-sdk@11.3.0':
-    resolution: {integrity: sha512-AHCtmdgcVDElRLlrR8jxSracF4beWholl3Ywnl6TrPgEiSYH81fSovgWVO/LbyN0tlGidCzJMAsOLXNddF5FGg==}
+  '@line/bot-sdk@11.4.0':
+    resolution: {integrity: sha512-VPPNiCxhJnjjB3zb7q14toar6WnPdeBU9019uIq0ATozkc2LTDozx2Xrqw21uc5wgFz7g/E1MM/vcPI5VlsZPQ==}
     engines: {node: '>=22'}
 
   '@poppinss/colors@4.1.6':
@@ -1051,7 +1051,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@line/bot-sdk@11.3.0':
+  '@line/bot-sdk@11.4.0':
     dependencies:
       '@types/node': 24.19.1
 
