@@ -18,7 +18,7 @@
     "postinstall": "wrangler types"
   },
   "dependencies": {
-    "@line/bot-sdk": "^11.3.0"
+    "@line/bot-sdk": "^11.4.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
